@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hero Section</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="style.css" rel="stylesheet"/>
+
+
+</head>
+<body>
+
+<!-- Navbar -->
+<header class="navbar">
+    <div class="logo">GREEN TRACK</div>
+
+    <!-- <ul class="nav-links">
+        <li><a href="#">Learn</a></li>
+        <li><a href="#">Results</a></li>
+        <li><a href="#">Services</a></li>
+    </ul> -->
+
+    <a href="#" class="btn-dark">Contact US</a>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+    
+
+    <!-- Image -->
+    <div class="hero-image">
+        <img src="planet.png" alt="Nature Illustration">
+        <div class="hero-banner-text">
+            <h1>Make Earth a Better Place to Live<br> Your Pledge Can Fight Climate Change</h1>
+            <p>Join thousands reducing their carbon footprint.</p>
+            <div class="hero-buttons">
+                <a href="#pledge-form" class="btn-dark">Sign the Pledge</a>        
+            </div>
+       </div>
+    </div>    
+</section>
+<!-- Trusted -->
+     <section class="cp-social-proof">
+  <div class="cp-container">
+
+    <div class="cp-header">
+      <h2>Trusted by Changemakers Worldwide</h2>
+      <p>Join thousands who have already taken the pledge to build a sustainable future.</p>
+    </div>
+
+    <div class="cp-stats">
+      <div class="cp-stat">
+        <h3 class="cp-counter" data-count="25000">0</h3>
+        <p>Pledges Taken</p>
+      </div>
+
+      <div class="cp-stat">
+        <h3 class="cp-counter" data-count="120">0</h3>
+        <p>Communities</p>
+      </div>
+
+      <div class="cp-stat">
+        <h3 class="cp-counter" data-count="80">0</h3>
+        <p>Reduced Carbon Impact</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+<section id="pledgeForm" class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-md-7">
+            <div class="card stats">
+                <h2>Why the Pledge Matters</h2>
+          
+                <div class="stat">
+                  <div class="icon"><img src="worldwide.png"></div>
+                  <div>
+                    <h3>1.5°C</h3>
+                    <p>Critical limit to avoid severe climate impact.</p>
+                  </div>
+                </div>
+          
+                <div class="stat">
+                  <div class="icon"><img src="thunderbolt.png"></div>
+                  <div>
+                    <h3>30%</h3>
+                    <p>Reduction in emissions needed by 2030.</p>
+                  </div>
+                </div>
+          
+                <div class="stat">
+                  <div class="icon"><img src="group.png"></div>
+                  <div>
+                    <h3>10K+</h3>
+                    <p>People already joined the pledge.</p>
+                  </div>
+                </div>
+          
+              </div>
+        </div>
+        <div class="col-md-5">
+            <div class="card form" id="pledge-form">
+                <h2>Sign the Pledge</h2>
+          
+                <input type="text" placeholder="Full Name">
+                <input type="email" placeholder="Email Address">
+          
+                <div class="checkbox">
+                  <input type="checkbox"> I agree to participate
+                </div>
+          
+                <button class="btn-dark">Submit</button>
+              </div>
+  
+        </div>
+       
+      </div>
+    </div>
+  </section>
+  
+
+<footer class="footer text-center">
+    <div class="container">
+      <div class="row">
+        <div class="foot-prints">        
+        <p>
+          <a href="#" class="text-white me-3">Home</a>
+          <a href="#" class="text-white me-3">About</a>
+          <a href="#" class="text-white">Contact</a>
+        </p>      
+       <p class="mb-0">© 2026 Carbon Pledge Campaign</p>
+      </div>
+    </div>
+    </div>
+  </footer>
+  
+  <script>
+    const counters = document.querySelectorAll('.cp-counter');
+
+const runCounter = (counter) => {
+  const target = +counter.getAttribute('data-count');
+  let count = 0;
+  const speed = target / 100;
+
+  const update = () => {
+    count += speed;
+    if (count < target) {
+      counter.innerText = Math.floor(count);
+      requestAnimationFrame(update);
+    } else {
+      counter.innerText = target >= 1000 
+        ? (target/1000).toFixed(0) + 'K+' 
+        : target + (target === 80 ? '%' : '+');
+    }
+  };
+
+  update();
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      runCounter(entry.target);
+      observer.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.6 });
+
+counters.forEach(counter => observer.observe(counter));
+  </script>
+</body>
+</html>
